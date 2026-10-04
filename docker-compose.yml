@@ -1,0 +1,16 @@
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: xunwei-redis
+    # 与本机已装的 Redis 冲突时改成 "6380:6379"，并同步设置 REDIS_PORT=6380
+    ports:
+      - "6379:6379"
+    # appendonly：秒杀场景下 Redis 里的库存与已下单标记是"短期真相"，
+    # 重启丢数据会导致库存与订单不一致。开着 AOF 让重启也能续上。
+    command: [ "redis-server", "--appendonly", "yes" ]
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 5s
+      timeout: 3s
+      retries: 10

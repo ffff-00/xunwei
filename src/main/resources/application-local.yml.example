@@ -1,0 +1,10 @@
+# 新机器上：复制为 application-local.yml 再填值（该文件已 gitignore）
+spring:
+  datasource:
+    username: your_user
+    password: "your_password"
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      # 有密码时补：password: your_redis_password

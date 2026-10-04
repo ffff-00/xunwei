@@ -1,0 +1,28 @@
+# 编译产物
+target/
+*.class
+
+# IDE
+.idea/
+*.iml
+
+# 真实环境配置（含口令），只提交 .example
+src/main/resources/application-local.yml
+src/main/resources/application-prod.yml
+.env
+
+# 改造前的旧 git 历史
+.git.original/
+
+# 前端
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# 日志
+logs/
+*.log
+
+# 系统
+.DS_Store
+Thumbs.db
