@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanmei.xunwei.mapper.VoucherOrderMapper">
+
+    <!--
+      我的订单列表。
+      用一次 JOIN 把前端要显示的字段一次取齐，避免"列表拿到 voucherId 再逐个查券和商铺"的 N+1 查询。
+      LIMIT 100：这是个人订单列表，不做真正的分页；数据量真上来时再换成 Page 查询。
+    -->
+    <select id="selectMyOrders" resultType="com.lanmei.xunwei.dto.VoucherOrderVO">
+        SELECT o.id          AS orderId,
+               o.voucher_id  AS voucherId,
+               v.title       AS voucherTitle,
+               v.sub_title   AS voucherSubTitle,
+               v.shop_id     AS shopId,
+               s.name        AS shopName,
+               v.pay_value   AS payValue,
+               v.actual_value AS actualValue,
+               o.status      AS status,
+               o.create_time AS createTime
+        FROM tb_voucher_order o
+                 JOIN tb_voucher v ON v.id = o.voucher_id
+                 LEFT JOIN tb_shop s ON s.id = v.shop_id
+        WHERE o.user_id = #{userId}
+        ORDER BY o.create_time DESC
+        LIMIT 100
+    </select>
+
+</mapper>
