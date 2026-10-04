@@ -1,0 +1,178 @@
+/* 寻味 · 全局样式
+   亮色底 + 高饱和暖橙（美食场景的食欲色），卡片式布局，圆角克制。 */
+
+:root {
+  --brand: #f4622a;
+  --brand-dark: #d94f1a;
+  --brand-soft: #fff1ea;
+
+  --bg: #f5f6f8;
+  --card: #ffffff;
+  --border: #e8eaee;
+
+  --text: #1f2328;
+  --text-muted: #6b7280;
+  --text-faint: #9ca3af;
+
+  --success: #16a34a;
+  --warning: #f59e0b;
+  --danger: #dc2626;
+
+  --radius: 10px;
+  --radius-lg: 14px;
+  --shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 4px 12px rgba(16, 24, 40, 0.05);
+  --shadow-hover: 0 4px 8px rgba(16, 24, 40, 0.07), 0 12px 28px rgba(16, 24, 40, 0.1);
+
+  /* Element Plus 主题色跟随品牌色 */
+  --el-color-primary: #f4622a;
+  --el-color-primary-light-3: #f78a5e;
+  --el-color-primary-light-5: #faa98a;
+  --el-color-primary-light-7: #fcc8b5;
+  --el-color-primary-light-8: #fdd7c9;
+  --el-color-primary-light-9: #feebe4;
+  --el-color-primary-dark-2: #d94f1a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ── 布局 ── */
+
+.page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 20px 16px 64px;
+}
+
+.page-narrow {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 20px 16px 64px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.card-pad {
+  padding: 18px 20px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 28px 0 14px;
+}
+
+.section-title h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.section-title .hint {
+  color: var(--text-faint);
+  font-size: 13px;
+}
+
+/* 标题前的一小段品牌色竖条，比整块底色克制 */
+.bar-title {
+  position: relative;
+  padding-left: 12px;
+}
+
+.bar-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 16px;
+  border-radius: 2px;
+  background: var(--brand);
+}
+
+.muted {
+  color: var(--text-muted);
+}
+
+.faint {
+  color: var(--text-faint);
+}
+
+.price {
+  color: var(--brand);
+  font-weight: 600;
+}
+
+.price-symbol {
+  font-size: 12px;
+  margin-right: 1px;
+}
+
+.empty-block {
+  padding: 56px 0;
+  text-align: center;
+  color: var(--text-faint);
+}
+
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gap-8 {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.gap-12 {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* 图片统一用背景图 + 容器裁切，避免不同尺寸图片把卡片撑变形 */
+.cover {
+  background-size: cover;
+  background-position: center;
+  background-color: #f0f1f3;
+}
